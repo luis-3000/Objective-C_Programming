@@ -14,7 +14,7 @@
  //This is the declaration of a struct
  struct Person {
  	float heightInMeters;
- 	int wightInKilos;
+ 	int weightInKilos;
  };
 
  int main(int garc, const char* argv[]) {
