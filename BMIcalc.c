@@ -28,4 +28,7 @@
 
  	printf("Jose is %.2f meters tall\n", Jose.heightInMeters);
  	printf("Jose weighs %d kilograms\n", Jose.weightInKilos);
+ 
+ 	printf("Aaron is %.2f meters tall\n", aaron.heightInMeters);
+ 	printf("Aaron weighs %d kilograms\n", aaron.weightInKilos);
  }
