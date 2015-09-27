@@ -13,7 +13,7 @@ int main(int argc, const char * argv[]) {
     
     @autoreleasepool {
         
-        //Create three instances of the BNRStockHolding
+        //Create three instances of the BNRStockHolding class
         BNRStockHolding *stock1= [[BNRStockHolding alloc] init];
         BNRStockHolding *stock2= [[BNRStockHolding alloc] init];
         BNRStockHolding *stock3= [[BNRStockHolding alloc] init];
@@ -40,6 +40,7 @@ int main(int argc, const char * argv[]) {
         [myStocks addObject:stock2];
         [myStocks addObject:stock3];
         
+        // Step through and print the information of each object
         NSInteger stockCount = [myStocks count]; //get a count for the items in the array
         for (int i = 0; i < stockCount; i++) {
             BNRStockHolding * s = myStocks[i];
