@@ -13,13 +13,10 @@
                  //Using @class instead of @import gives the commpiler less information but makes the processing of this particular file faster.
 
 @interface BNREmployee : BNRPerson
-{
-    NSMutableArray *_assets; //Instance variable to hold a pointer to the mutable array of assets
-}
+
 
 
 @property (nonatomic) unsigned int employeeID;
-@property (nonatomic) unsigned int officeAlarmCode;
 @property (nonatomic) NSDate *hireDate; //Points to another object
 @property (nonatomic, copy) NSArray *assets; //This tells other classes then when they call the 'assets' they are going to get something
                                              // that is not mutable. However, the _assets array is actually an instance of NSMutableArray so that

@@ -12,6 +12,30 @@
                         // Reason why I have imported BNRAsset.h instead of using @class
 
 
+// A Class extension - a set of declarations that is private. Only the class or instances of the class are able to use the properties, instance variables, or methods
+//                     declared in a class extension.
+/* Moving the office AlarmCode declaration from the BNREmployee.h file to a class extension here has two related effects:
+ * 1). Objects that are not instance of BNREmployee can no longer see this property. Exmaple, a non-BNREmployee object could attempt to access an 
+ * employee's alarm code like this:
+ *      BNREmployee *mikey = [[BNREmployee alloc] init];
+ *      unsigned int mikeysCode = mikey.officeAlarmCode;
+ *  which results in a compiler error that reads "No visible @interface declares the instance method officeAlarmCode". The only interface that is visible
+ * to a non-BNREmployee object is the BNREmployee header.
+ *
+ * 2). The BNREmployee header has one less declaration and thus a little bit simpler. This is a good thing. The header is intended to be a billboard;
+ *     its job is to advertise what other developers need to know to make our class work in the code that they write. Too much information makes a header
+ *     difficult for other developer to read and use.
+ */
+@interface BNREmployee ()
+{
+    NSMutableArray *_assets; //Instance variable to hold a pointer to the mutable array of assets
+}
+@property (nonatomic) unsigned int officeAlarmCode;
+@end
+
+
+
+
 @implementation BNREmployee
 
 // Accessors for assets properties
