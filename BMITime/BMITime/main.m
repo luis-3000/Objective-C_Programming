@@ -30,6 +30,9 @@ int main(int argc, const char * argv[])
             [employees addObject:mikey];
         }
         
+        //An array for all assets, as they are created.
+        NSMutableArray *allAssets = [[NSMutableArray alloc] init];
+        
         // Create 10 assets
         for (int i = 0; i < 10; i++) {
             // Create an asset
@@ -48,6 +51,8 @@ int main(int argc, const char * argv[])
             
             // Assign the asset to the employee
             [randomEmployee addAsset:asset];
+            
+            [allAssets addObject:asset]; // Add them as they are created
         }
         
         NSLog(@"Employees: %@", employees);
@@ -56,11 +61,16 @@ int main(int argc, const char * argv[])
         
         [employees removeObjectAtIndex:5];
         
+        NSLog(@"allAssets: %@", allAssets); // Show them all
+        
         NSLog(@"Giving up ownership of arrays");
         
+        
+        allAssets = nil; // Free up the objects' memory
         employees = nil;
         
     }
+    
     return 0;
 }
 

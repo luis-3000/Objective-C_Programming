@@ -59,6 +59,9 @@
         _assets = [[NSMutableArray alloc] init];
     }
     [_assets addObject:a];
+    
+    //In this method that adds the child to the parent's collection, set the child's pointer to point back to its 'holder'
+    a.holder = self; //This prevents this object from being deallocated during garbage collection
 }
 
 

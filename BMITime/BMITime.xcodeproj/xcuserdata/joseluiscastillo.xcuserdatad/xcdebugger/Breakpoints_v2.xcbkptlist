@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BNREmployee.m"
-            timestampString = "465515796.783222"
+            timestampString = "465532242.429053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "@interface BNREmployee()"
             landmarkType = "2">
             <Locations>
@@ -26,11 +26,11 @@
                   moduleName = "BMITime"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/joseluiscastillo/Documents/ObjectiveCProgramming/BMITime/BNREmployee.m"
-                  timestampString = "465515906.428709"
+                  timestampString = "465532884.081259"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
                   offsetFromSymbolStart = "12">
                </Location>
                <Location
@@ -41,7 +41,7 @@
                   moduleName = "BMITime"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/joseluiscastillo/Documents/ObjectiveCProgramming/BMITime/BNREmployee.m"
-                  timestampString = "465515906.429966"
+                  timestampString = "465532884.081463"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
