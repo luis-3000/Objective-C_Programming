@@ -17,6 +17,9 @@ int main(int argc, const char * argv[])
         // Create an array of BNREmployee objects
         NSMutableArray *employees = [[NSMutableArray alloc] init];
         
+        // Create a dcitionary of executives
+        NSMutableDictionary *executives = [[NSMutableDictionary alloc] init];
+        
         for (int i = 0; i < 10; i++) {
             // Create an instance of BNREmployee
             BNREmployee *mikey = [[BNREmployee alloc] init];
@@ -28,10 +31,28 @@ int main(int argc, const char * argv[])
             
             // Put the employee in the employees array
             [employees addObject:mikey];
+            
+            // Is this the first employee?
+            if (i == 0) {
+                [executives setObject:mikey forKey:@"CEO"];
+            }
+            
+            // Is this the second employee?
+            if (i == 1) {
+                [executives setObject:mikey forKey:@"CTO"];
+            }
         }
         
         //An array for all assets, as they are created.
         NSMutableArray *allAssets = [[NSMutableArray alloc] init];
+        
+        // Print out the entire dictionary
+        NSLog(@"executives; %@", executives);
+        
+        
+        // Print out the CEO's information
+        NSLog(@"CEO: %@", executives[@"CEO"]);
+        executives = nil;
         
         // Create 10 assets
         for (int i = 0; i < 10; i++) {
@@ -55,6 +76,18 @@ int main(int argc, const char * argv[])
             [allAssets addObject:asset]; // Add them as they are created
         }
         
+        // Sort by Value of assets
+        NSSortDescriptor *voa = [NSSortDescriptor sortDescriptorWithKey:@"valueOfAssets"
+                                                              ascending:YES];
+        
+        // Sort by Employee id
+        NSSortDescriptor *eid = [NSSortDescriptor sortDescriptorWithKey:@"employeeID"
+                                                              ascending:YES];
+        
+        // Print them
+        NSLog(@"\nSorting first by Value of assets and then by employee id:");
+        [employees sortUsingDescriptors: @[voa, eid]];
+                                 
         NSLog(@"Employees: %@", employees);
         
         NSLog(@"Giving up ownership of one employee");
@@ -62,6 +95,13 @@ int main(int argc, const char * argv[])
         [employees removeObjectAtIndex:5];
         
         NSLog(@"allAssets: %@", allAssets); // Show them all
+        
+        // Filter the collection based on a logical statement
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"holder.valueOfAssets > 70"];
+        NSArray *toBeReclaimed = [allAssets filteredArrayUsingPredicate:predicate];
+        NSLog(@"toBeReclaimed: %@", toBeReclaimed);
+        toBeReclaimed = nil;
         
         NSLog(@"Giving up ownership of arrays");
         

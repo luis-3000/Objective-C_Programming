@@ -18,10 +18,12 @@
 
 @property (nonatomic) unsigned int employeeID;
 @property (nonatomic) NSDate *hireDate; //Points to another object
-@property (nonatomic, copy) NSArray *assets; //This tells other classes then when they call the 'assets' they are going to get something
+//@property (nonatomic, copy) NSArray *assets; //This tells other classes then when they call the 'assets' they are going to get something
                                              // that is not mutable. However, the _assets array is actually an instance of NSMutableArray so that
                                              // items can be added or removed in BNREmployee.m . That is why I am declaring a property and an instance
                                              // variable, since in this case, the type of the property and the type of the instance variable are not the same.
+                                             // Later replaced with below line of code:
+@property (nonatomic, copy) NSSet *assets; //A set does not have order and does not allow duplicate items
 - (double)yearsOfEmployment;
 - (void)addAsset:(BNRAsset *)a;
 - (unsigned int)valueOfAssets;

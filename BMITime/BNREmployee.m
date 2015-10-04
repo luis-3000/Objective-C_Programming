@@ -28,7 +28,7 @@
  */
 @interface BNREmployee ()
 {
-    NSMutableArray *_assets; //Instance variable to hold a pointer to the mutable array of assets
+    NSMutableSet *_assets; //Instance variable to hold a pointer to the mutable array of assets
 }
 @property (nonatomic) unsigned int officeAlarmCode;
 @end
@@ -48,7 +48,7 @@
 - (NSArray *)assets
 {
     return [_assets copy];
-}
+} 
 
 
 - (void)addAsset:(BNRAsset *)a
@@ -56,7 +56,7 @@
     // Is assets nil?
     if (!_assets) {
         // Create the array
-        _assets = [[NSMutableArray alloc] init];
+        _assets = [[NSMutableSet alloc] init];
     }
     [_assets addObject:a];
     
