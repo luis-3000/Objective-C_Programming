@@ -1,3 +1,4 @@
+/*
 //
 //  main.m
 //  RandomItems
@@ -5,6 +6,7 @@
 //  Created by Jose Luis Castillo on 10/8/15.
 //  Copyright © 2015 Jose Luis Castillo. All rights reserved.
 //
+*/
 
 #import <Foundation/Foundation.h>
 #import "BNRItem.h"
@@ -13,7 +15,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // Create a mutable array object, store its address in items variable
         NSMutableArray *items = [[NSMutableArray alloc] init];
-        
+/*
 //        // Send the message addObject: to the NSMutableArray pointed to by the
 //        // variable items, passing a string each time
 //        [items addObject:@"One"];
@@ -63,17 +65,32 @@ int main(int argc, const char * argv[]) {
 //        // Confirming seond initializer
 //        BNRItem *itemWithNoName = [[BNRItem alloc] init];
 //        NSLog(@"%@", itemWithNoName);
-
+*/
+        
         
         // Creating random BNRItem instances
-        for (int i = 0; i < 10; i++) {
-            BNRItem *item = [BNRItem randomItem];
-            [items addObject:item];
-        }
+//        for (int i = 0; i < 10; i++) {
+//            BNRItem *item = [BNRItem randomItem];
+//            [items addObject:item];
+//        }
+
+        // Introducing 'strong reference cycle' as an experiment
+        BNRItem *backpack = [[BNRItem alloc] initWithItemName:@"Backpack"];
+        [items addObject:backpack];
+        
+        BNRItem *calculator = [[BNRItem alloc] initWithItemName:@"Calculator"];
+        [items addObject:calculator];
+        
+        backpack.containedItem = calculator; // These two objects now have references to each other, thus creating the "strong reference cycle"
+        
+        backpack = nil;
+        calculator = nil;
         
         for (BNRItem *item in items) {
             NSLog(@"%@", item);
         }
+        
+        NSLog(@"Setting items to nil ... ");
         
         // Destroy the mutable array object (to free up memory)
         items = nil;

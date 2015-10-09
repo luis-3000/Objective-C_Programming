@@ -129,4 +129,34 @@
     return newItem;
 }
 
+// Overriding to explore memory de-allocation
+- (void)dealloc
+{
+    NSLog(@"Destroyed: %@", self);
+}
+
+// Introducing 'strong reference cycle' as an experiment
+- (void)setContainedItem:(BNRItem *)item
+{
+    _containedItem = item;
+    
+    // When given an item to conatin, the contained item will be given a pointer to its continer
+    item.container = self;
+}
+
+- (BNRItem *)containedItem
+{
+    return _containedItem;
+}
+
+- (void)setContainer:(BNRItem *)item
+{
+    _container = item;
+}
+
+- (BNRItem *)container
+{
+    return _container;
+}
+
 @end

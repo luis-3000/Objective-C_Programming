@@ -15,6 +15,10 @@
     NSString *_serialNumber;
     int _valueInDollars;
     NSDate *_dateCreated;
+    
+    // Introducing 'strong reference cycle' as an experiment
+    BNRItem *_containedItem;
+    BNRItem *_container;
 }
 
 // A Class method that will create a random item
@@ -41,5 +45,13 @@
                     serialNumber:(NSString *)sNumber;
 
 - (instancetype)initWithItemName:(NSString *)name;
+
+
+// Introducing 'strong reference cycle' as an experiment
+- (void)setContainedItem:(BNRItem *)item;
+- (BNRItem *)containedItem;
+
+- (void)setContainer:(BNRItem *)item;
+- (BNRItem *)container;
 
 @end
