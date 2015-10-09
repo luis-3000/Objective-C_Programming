@@ -69,29 +69,28 @@ int main(int argc, const char * argv[]) {
         
         
         // Creating random BNRItem instances
-//        for (int i = 0; i < 10; i++) {
-//            BNRItem *item = [BNRItem randomItem];
-//            [items addObject:item];
-//        }
+        for (int i = 0; i < 10; i++) {
+            BNRItem *item = [BNRItem randomItem];
+            [items addObject:item];
+        }
 
-        // Introducing 'strong reference cycle' as an experiment
-        BNRItem *backpack = [[BNRItem alloc] initWithItemName:@"Backpack"];
-        [items addObject:backpack];
-        
-        BNRItem *calculator = [[BNRItem alloc] initWithItemName:@"Calculator"];
-        [items addObject:calculator];
-        
-        backpack.containedItem = calculator; // These two objects now have references to each other, thus creating the "strong reference cycle"
-        
-        backpack = nil;
-        calculator = nil;
+//        // Introducing 'strong reference cycle' as an experiment
+//        BNRItem *backpack = [[BNRItem alloc] initWithItemName:@"Backpack"];
+//        [items addObject:backpack];
+//        
+//        BNRItem *calculator = [[BNRItem alloc] initWithItemName:@"Calculator"];
+//        [items addObject:calculator];
+//        
+//        backpack.containedItem = calculator; // These two objects now have references to each other, thus creating the "strong reference cycle"
+//        
+//        backpack = nil;
+//        calculator = nil;
         
         for (BNRItem *item in items) {
             NSLog(@"%@", item);
         }
         
         NSLog(@"Setting items to nil ... ");
-        
         // Destroy the mutable array object (to free up memory)
         items = nil;
     }

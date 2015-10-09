@@ -10,40 +10,8 @@
 
 @implementation BNRItem
 
-- (void)setItemName:(NSString *)str
-{
-    _itemName = str;
-}
 
-- (NSString  *)itemName
-{
-    return _itemName;
-}
 
-- (void)setSerialNumber:(NSString *)str
-{
-    _serialNumber = str;
-}
-
-- (NSString *)serialNumber
-{
-    return _serialNumber;
-}
-
-- (void)setValueInDollars:(int)v
-{
-    _valueInDollars = v;
-}
-
-- (int)valueInDollars
-{
-    return _valueInDollars;
-}
-
-- (NSDate *)dateCreated
-{
-    return _dateCreated;
-}
 
 - (NSString *)description
 {
@@ -135,28 +103,11 @@
     NSLog(@"Destroyed: %@", self);
 }
 
-// Introducing 'strong reference cycle' as an experiment
-- (void)setContainedItem:(BNRItem *)item
-{
-    _containedItem = item;
-    
-    // When given an item to conatin, the contained item will be given a pointer to its continer
-    item.container = self;
-}
 
-- (BNRItem *)containedItem
+- (void)setContainedItem:(BNRItem *)containedItem
 {
-    return _containedItem;
-}
-
-- (void)setContainer:(BNRItem *)item
-{
-    _container = item;
-}
-
-- (BNRItem *)container
-{
-    return _container;
+    _containedItem = containedItem;
+    self.containedItem.container = self; // Also, set the contained property of the item being contained
 }
 
 @end
