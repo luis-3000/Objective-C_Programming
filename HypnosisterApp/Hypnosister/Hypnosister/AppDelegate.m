@@ -29,14 +29,40 @@
     
     // Create a CGRect that will be the grame of a BNRHypnosisView
     //CGRect firstFrame = CGRectMake(160, 240, 100, 150);
-    CGRect firstFrame = self.window.bounds; // define the frame for a full-screen instance of BNRHypnosisView instead
+    //CGRect firstFrame = self.window.bounds; // define the frame for a full-screen instance of BNRHypnosisView instead
     
     // Create an instance of BNRHypnosisView and set it property to red
-    BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
+    //BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
     //firstView.backgroundColor = [UIColor redColor]; // not needed anymore
     
     // Add the BNRHypsosisView as a subview of the window to make it part of the view hierarchy
-    [self.window addSubview:firstView];
+    //[self.window addSubview:firstView];
+    
+    // Create CGRects for frams
+    CGRect screenRect = self.window.bounds;
+    CGRect bigRect = screenRect;
+    bigRect.size.width *= 2.0;
+    //bigRect.size.height *= 2.0;
+    
+    // Create a screen-sized scroll view and add it to the iwndow
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+    [self.window addSubview:scrollView];
+    
+    // Create a super-sized hypnosis view and add it to the scroll view
+    //BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:bigRect];
+    // Create a screen-sized hypnosis view and add it to the scrolll view
+    BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:hypnosisView];
+    
+    // Add a second screen-sized hypnosis view just off screen to the right
+    screenRect.origin.x += screenRect.size.width;
+    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:anotherView];
+    
+    // Tell the scroll view how big its content area is
+    scrollView.contentSize = bigRect.size;
+    
+
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

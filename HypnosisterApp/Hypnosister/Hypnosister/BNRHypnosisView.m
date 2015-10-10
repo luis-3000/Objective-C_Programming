@@ -8,8 +8,15 @@
 
 #import "BNRHypnosisView.h"
 
-@implementation BNRHypnosisView
 
+// Class extension with the property declaration for the color of the circle
+@interface BNRHypnosisView()
+@property (strong, nonatomic) UIColor *circleColor; // Why is this property declared in a class extension oand not in the header file?
+@end                                                // Because we want it to be visible only to this class and no other class needs to know about it.
+
+
+
+@implementation BNRHypnosisView
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -57,7 +64,9 @@
     path.lineWidth = 10;
     
     // Configure the drawing color to light gray
-    [[UIColor lightGrayColor] setStroke];
+    //[[UIColor lightGrayColor] setStroke];
+    [self.circleColor setStroke];  // use circleColor instead
+    
     
     // Send a message to the UIBezierPath that tells it to draw
     // Draw the line!
@@ -80,8 +89,37 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     if (self) {
         // All BNRHypnosisViews start with a clear background coloe
         self.backgroundColor = [UIColor clearColor];
+        
+        // Method to create a default circleColor for instances of BNRHypnosisView
+        self.circleColor = [UIColor lightGrayColor];
     }
     return self;
+}
+
+// When a finger touches the screen
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"%@ was touched", self);
+    
+    // Create a random-colored UIColor
+    // Get 3 random numbers between 0 and 1
+    float red = (arc4random() % 100) / 100.0;
+    float green = (arc4random() % 100) / 100.0;
+    float blue = (arc4random() % 100) / 100.0;
+    
+    UIColor *randomColor = [UIColor colorWithRed:red
+                                           green: green
+                                            blue:blue
+                                           alpha:1.0];
+    //  Set circleColor to the random color
+    self.circleColor = randomColor;
+}
+
+/* Custom accessor for the circleColor property to send setNeedsDisplay to the view whenever this property is changed. */
+- (void)setCircleColor:(UIColor *)circleColor
+{
+    _circleColor = circleColor;
+    [self setNeedsDisplay];
 }
 
 
